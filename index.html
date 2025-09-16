@@ -235,7 +235,7 @@
             border-left: 8px solid #ff4757;
             position: relative;
             overflow: hidden;
-            background-image: url('https://github.com/toadymaster15/daily-apg/blob/main/resources/breakingnewscover.png?raw=true');
+            background-image: url('https://github.com/toadymaster15/daily-apg/blob/main/resources/apgVillager21Captured.png?raw=true');
             background-size: cover;
             background-position: center;
             display: flex;
@@ -508,6 +508,42 @@
             padding: 2rem;
         }
 
+        /* NEW: Video container styles */
+        .modal-video-container {
+            margin-bottom: 2rem;
+            border-radius: 15px;
+            overflow: hidden;
+            background: #000;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-video-container video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .modal-video-container iframe {
+            width: 100%;
+            height: 400px;
+            border: none;
+            display: block;
+        }
+
+        /* Vimeo responsive container */
+        .vimeo-container {
+            padding: 56.25% 0 0 0;
+            position: relative;
+        }
+
+        .vimeo-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
         .modal-description {
             font-size: 1.1rem;
             line-height: 1.8;
@@ -597,6 +633,10 @@
             .modal-body {
                 padding: 1.5rem;
             }
+
+            .modal-video-container iframe {
+                height: 250px;
+            }
         }
     </style>
 </head>
@@ -615,15 +655,15 @@
 
     <main>
         <div id="home-content" class="tab-content active">
-            <section class="breaking-news" onclick="openModal('breaking')">
+            <section class="breaking-news" onclick="openModal('villager21Trial')">
                 <div class="breaking-content">
                     <div class="breaking-label">Breaking News</div>
-                    <h2>will we know villager #21's fate?</h2>
-                    <p>all of the APG citizens have been begging for a large punishment for this criminal. we will soon know his fate when his trial begins at the APG Testificate Court.</p>
+                    <h2>🚨 VILLAGER #21 CAPTURED - CAMERA FOOTAGE 🚨</h2>
+                    <p>IT IS OFFICIAL - VILLAGER #21 FINALLY CAPTURED, WE WILL NOW SETTLE IT OUT IN COURT!!</p>
                     <div class="breaking-meta">
-                        <span>📅 Published: September 7, 2025</span>
+                        <span>📅 Published: September 16, 2025</span>
                         <span>👤 By: Villager #41</span>
-                        <span>🏷️ Category: Inconsiderate News</span>
+                        <span>🏷️ Category: Very Inconsiderate News</span>
                     </div>
                 </div>
             </section>
@@ -694,8 +734,23 @@
                         </div>
                     </div>
                 </article>
+                 <article class="news-card" onclick="openModal('breaking')">
+                    <div class="news-image" style="background-image: url('https://github.com/toadymaster15/daily-apg/blob/main/resources/breakingnewscover.png?raw=true');">
+                        <span></span>
+                    </div>
+                    <div class="news-content">
+                        <h3>will we know villager #21's fate?</h3>
+                        <p>all of the APG citizens have been begging for a large punishment for this criminal. we will soon know his fate when his trial begins at the APG Testificate Court.</p>
+                        <div class="news-meta">
+                            <span class="category-tag">Breaking News</span>
+                            <span>Sep 7, 2025</span>
+                        </div>
+                    </div>
+                </article>
             </section>
         </div>
+
+
 
         <div id="socials-content" class="tab-content">
             <div class="socials-container">
@@ -753,6 +808,7 @@
                 </div>
             </div>
             <div class="modal-body">
+                <div class="modal-video-container" id="modalVideoContainer" style="display: none;"></div>
                 <div class="modal-description" id="modalDescription"></div>
                 <div class="modal-images" id="modalImages"></div>
             </div>
@@ -818,7 +874,7 @@
                 category: "Life Updates",
                 title: "The oldest buildings on APG",
                 meta: "📅 Published: September 9, 2025 | 👤 By: Villager #41",
-                headerImage: "https://gihttps://github.com/toadymaster15/daily-apg/blob/main/resources/ancientHouse.png?raw=true",
+                headerImage: "https://github.com/toadymaster15/daily-apg/blob/main/resources/ancientHouse.png?raw=true",
                 description: `It is Villager #41's 2nd day of helping document APG. Here is what he decided to show us today:\nhelo everyone it is me again villager #41, and today I have decided to visit some of the oldest buildings ever!! first, let's start from:\n1. THE SMALL MONUMENTS: They date back to Day <100, before most villagers were born. They can be found behind the trading hall's mountain. Over time, almost all of the monuments have been removed, and we are only left with a few in existence.\n2. THE BIG MONUMENT: This monument was also built before Day 100. Currently only a giant pillar remains, due to censorship.\n3. THE HOUSE ON TOP OF THAT MOUNTAIN THAT NOBODY LIKED: One of the oldest buildings ever made on APG. It belonged to a different villager species. The house's 1st floor is almost unrecognizable, but the 2nd floor was kept untouched.\n4. THE TRADING HALL: Surprisingly, also one of the oldest buildings on APG, that is still used and modernized to this day. Arguably the oldest building that is STILL in use. The creation of the beach resort has marked a new generation of villagers, and the trading hall is soon expected to be no longer accepting new villagers.\nTHE GRAVEYARDS: Without that much research done, it is arguably considered THE oldest "building" on APG. There are 2 in existence, and were made for the different villager species.\nThat's it from Villager #41 for today! Expect a second part to this article quite soon. ok cya bye hahahahahahxad`,
                 images: [
                     "https://github.com/toadymaster15/daily-apg/blob/main/resources/ancientMonument.png?raw=true",
@@ -827,7 +883,21 @@
                     "https://github.com/toadymaster15/daily-apg/blob/main/resources/ancientTradingHall.png?raw=true",
                     
                 ]
+            },
+
+            villager21Trial: {
+                category: "Breaking News",
+                title: "🚨 VILLAGER #21 CAPTURED - CAMERA FOOTAGE 🚨",
+                meta: "📅 Published: September 16, 2025 | 👤 By: Villager #41",
+                headerImage: "https://github.com/toadymaster15/daily-apg/blob/main/resources/apgVillager21Captured.png?raw=true",
+                description: `Villager #21 has been successfully captured and taken to Emerald Resort for trial, when every villager was asleep.\n We've received camera footage as well as drone footage of this event. None of the camera footage was altered, atleast by us. We've only added comments. Here's some words from the villager himself:\n\nVillager VIP: "Our team over at APG has planned out an operation to capture this notorious criminal. We striked at night when he least expected it. Allegedly, he was already planning an escape, as he knew about the tunnel we dug for him. Anyone found co-operating with him will also be brought to justice. We invite all of the Emerald Resort citizens to watch the case in court live."`,
+                video: "https://player.vimeo.com/video/1119179467?badge=0&autopause=0",
+                images: [
+                    "https://github.com/toadymaster15/daily-apg/blob/main/resources/apgVillager21Captured.png?raw=true"
+                    
+                ]
             }
+
             
         };
 
@@ -859,14 +929,45 @@
             
             document.getElementById('modalHeader').style.backgroundImage = `url('${data.headerImage}')`;
             
+            const videoContainer = document.getElementById('modalVideoContainer');
+            if (data.video && data.video.trim() !== '') {
+                videoContainer.style.display = 'block';
+                
+                if (data.video.includes('youtube.com') || data.video.includes('youtu.be')) {
+                    videoContainer.innerHTML = `<iframe src="${data.video}" allowfullscreen></iframe>`;
+                } else if (data.video.includes('vimeo.com') || data.video.includes('player.vimeo.com')) {
+                    if (data.video.includes('<iframe')) {
+                        videoContainer.innerHTML = `<div class="vimeo-container">${data.video.replace(/style="[^"]*"/g, 'style="position:absolute;top:0;left:0;width:100%;height:100%;"')}</div>`;
+                    } else {
+                        let vimeoUrl = data.video;
+                        if (!vimeoUrl.includes('?')) {
+                            vimeoUrl += '?badge=0&autopause=0&player_id=0';
+                        }
+                        videoContainer.innerHTML = `<div class="vimeo-container"><iframe src="${vimeoUrl}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>`;
+                    }
+                } else {
+                    videoContainer.innerHTML = `<video controls>
+                        <source src="${data.video}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>`;
+                }
+            } else {
+                videoContainer.style.display = 'none';
+                videoContainer.innerHTML = '';
+            }
+            
             const imagesContainer = document.getElementById('modalImages');
             imagesContainer.innerHTML = '';
-            data.images.forEach(imageUrl => {
-                const imageDiv = document.createElement('div');
-                imageDiv.className = 'modal-image';
-                imageDiv.style.backgroundImage = `url('${imageUrl}')`;
-                imagesContainer.appendChild(imageDiv);
-            });
+            if (data.images) {
+                data.images.forEach(imageUrl => {
+                    if (imageUrl && imageUrl.trim() !== '') {
+                        const imageDiv = document.createElement('div');
+                        imageDiv.className = 'modal-image';
+                        imageDiv.style.backgroundImage = `url('${imageUrl}')`;
+                        imagesContainer.appendChild(imageDiv);
+                    }
+                });
+            }
             
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
